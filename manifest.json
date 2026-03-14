@@ -1,0 +1,52 @@
+{
+  "name": "SecurePass - Gestionnaire de mots de passe",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "description": "Générez et gérez vos mots de passe en toute sécurité",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "cookies",
+    "webRequest",
+    "scripting",
+    "identity"
+  ],
+  "host_permissions": [
+    "https://cornflowerblue-dog-952254.hostingersite.com/*",
+    "http://localhost/*",
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["utils.js", "content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "SecurePass",
+    "default_icon": {
+      "16": "icons/icon16.svg",
+      "32": "icons/icon32.svg",
+      "48": "icons/icon48.svg",
+      "128": "icons/icon128.svg"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.svg",
+    "32": "icons/icon32.svg",
+    "48": "icons/icon48.svg",
+    "128": "icons/icon128.svg"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["styles.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

@@ -1,0 +1,497 @@
+/* Styles pour l'extension SecurePass */
+
+/* Variables CSS */
+:root {
+  --securepass-primary: #667eea;
+  --securepass-primary-dark: #5a67d8;
+  --securepass-secondary: #764ba2;
+  --securepass-success: #4caf50;
+  --securepass-warning: #ff9800;
+  --securepass-error: #f44336;
+  --securepass-info: #2196f3;
+  
+  --securepass-text-primary: #ffffff;
+  --securepass-text-secondary: rgba(255, 255, 255, 0.8);
+  --securepass-text-muted: rgba(255, 255, 255, 0.6);
+  
+  --securepass-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  --securepass-shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.4);
+  
+  --securepass-radius: 16px;
+  --securepass-radius-small: 8px;
+  --securepass-radius-large: 20px;
+  
+  --securepass-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  
+  --securepass-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --securepass-transition-fast: all 0.2s ease;
+}
+
+/* Reset et base pour les éléments de l'extension */
+.securepass-popup,
+.securepass-popup * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Popup principal */
+.securepass-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2147483647; /* Valeur maximale pour z-index */
+  font-family: var(--securepass-font-family);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.securepass-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: securepass-fade-in 0.3s ease;
+}
+
+@keyframes securepass-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.securepass-popup-content {
+  background: linear-gradient(135deg, var(--securepass-primary) 0%, var(--securepass-secondary) 100%);
+  border-radius: var(--securepass-radius);
+  padding: 30px;
+  width: 90%;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--securepass-shadow);
+  text-align: center;
+  color: var(--securepass-text-primary);
+  position: relative;
+  transform: scale(0.8) translateY(20px);
+  opacity: 0;
+  transition: var(--securepass-transition);
+}
+
+.securepass-popup-content.securepass-popup-show {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.securepass-popup-content.securepass-popup-hide {
+  transform: scale(0.8) translateY(20px);
+  opacity: 0;
+}
+
+/* Header du popup */
+.securepass-popup-header {
+  margin-bottom: 25px;
+}
+
+.securepass-popup-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.securepass-popup-header h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: var(--securepass-text-primary);
+}
+
+.securepass-popup-header p {
+  font-size: 14px;
+  color: var(--securepass-text-secondary);
+  margin: 0;
+}
+
+/* Message du popup */
+.securepass-popup-message {
+  margin: 20px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--securepass-radius-small);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.securepass-popup-message p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--securepass-text-secondary);
+  margin: 0;
+}
+
+/* Affichage du mot de passe */
+.securepass-password-display {
+  margin: 25px 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--securepass-radius-small);
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.securepass-password-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--securepass-text-primary);
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  word-break: break-all;
+  user-select: all;
+  cursor: pointer;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--securepass-radius-small);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+.securepass-password-text:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.securepass-password-strength {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.securepass-strength-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.securepass-strength-fill {
+  height: 100%;
+  transition: var(--securepass-transition);
+  border-radius: 4px;
+}
+
+.securepass-strength-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 60px;
+  text-align: right;
+}
+
+/* Informations des identifiants */
+.securepass-credentials-info {
+  margin: 25px 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--securepass-radius-small);
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: left;
+}
+
+.securepass-credential-item {
+  color: var(--securepass-text-primary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.securepass-credential-item strong {
+  color: var(--securepass-text-primary);
+  font-weight: 600;
+}
+
+/* Actions du popup */
+.securepass-popup-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 25px 0 20px 0;
+  flex-wrap: wrap;
+}
+
+/* Boutons */
+.securepass-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 18px;
+  border: none;
+  border-radius: var(--securepass-radius-small);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--securepass-font-family);
+  cursor: pointer;
+  transition: var(--securepass-transition-fast);
+  text-decoration: none;
+  min-width: 100px;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.securepass-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.securepass-btn:disabled:hover {
+  transform: none;
+}
+
+.securepass-btn-primary {
+  background: var(--securepass-success);
+  color: white;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.securepass-btn-primary:hover:not(:disabled) {
+  background: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4);
+}
+
+.securepass-btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--securepass-text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.securepass-btn-secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.securepass-btn-danger {
+  background: rgba(231, 76, 60, 0.9);
+  color: white;
+}
+
+.securepass-btn-danger:hover:not(:disabled) {
+  background: #c0392b;
+  transform: translateY(-1px);
+}
+
+.securepass-btn-success {
+  background: var(--securepass-success) !important;
+  color: white !important;
+}
+
+/* Footer du popup */
+.securepass-popup-footer {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.securepass-popup-footer p {
+  font-size: 12px;
+  color: var(--securepass-text-muted);
+  margin: 0;
+}
+
+/* Notifications */
+.securepass-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2147483646;
+  max-width: 400px;
+  border-radius: var(--securepass-radius-small);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  font-family: var(--securepass-font-family);
+  transform: translateX(100%);
+  transition: var(--securepass-transition);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.securepass-notification-show {
+  transform: translateX(0);
+}
+
+.securepass-notification-hide {
+  transform: translateX(100%);
+}
+
+.securepass-notification-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+}
+
+.securepass-notification-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.securepass-notification-message {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.securepass-notification-success {
+  background: linear-gradient(135deg, var(--securepass-success), #45a049);
+  color: white;
+}
+
+.securepass-notification-error {
+  background: linear-gradient(135deg, var(--securepass-error), #d32f2f);
+  color: white;
+}
+
+.securepass-notification-warning {
+  background: linear-gradient(135deg, var(--securepass-warning), #f57c00);
+  color: white;
+}
+
+.securepass-notification-info {
+  background: linear-gradient(135deg, var(--securepass-info), #1976d2);
+  color: white;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .securepass-popup-content {
+    width: 95%;
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  .securepass-popup-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .securepass-btn {
+    width: 100%;
+  }
+  
+  .securepass-notification {
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+}
+
+/* Animations de pulsation pour l'icône */
+@keyframes securepass-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.securepass-popup-icon:hover {
+  animation: securepass-pulse 2s infinite;
+}
+
+/* États de chargement */
+.securepass-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.securepass-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: securepass-spin 1s linear infinite;
+}
+
+@keyframes securepass-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  .securepass-popup-content,
+  .securepass-btn,
+  .securepass-notification,
+  .securepass-strength-fill {
+    transition: none;
+  }
+  
+  .securepass-popup-icon:hover {
+    animation: none;
+  }
+  
+  @keyframes securepass-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+/* Support pour les thèmes sombres du système */
+@media (prefers-color-scheme: dark) {
+  .securepass-popup-overlay {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* Focus pour l'accessibilité */
+.securepass-btn:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+.securepass-password-text:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
