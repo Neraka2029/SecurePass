@@ -2,7 +2,7 @@
 
 Extension de navigateur Chrome pour la gestion sécurisée des mots de passe, intégrée avec votre plateforme web hébergée sur Hostinger.
 
-## 🚀 Fonctionnalités
+## Fonctionnalités
 
 ### Détection Automatique
 - **Formulaires d'inscription** : Détection intelligente des champs password lors de l'inscription
@@ -26,7 +26,7 @@ Extension de navigateur Chrome pour la gestion sécurisée des mots de passe, in
 - **Notifications contextuelles** : Feedback utilisateur en temps réel
 - **Responsive** : Adaptation automatique à toutes les tailles d'écran
 
-## 📋 Prérequis
+## Prérequis
 
 ### Serveur Web
 - PHP 7.4+ avec PDO MySQL
@@ -67,7 +67,7 @@ CREATE TABLE auth_tokens (
 );
 ```
 
-## 🛠️ Installation
+## Installation
 
 ### 1. Préparation du Serveur
 ```bash
@@ -97,7 +97,7 @@ Modifiez l'URL de votre serveur dans `background.js` et `content.js` si nécessa
 const API_BASE_URL = 'https://cornflowerblue-dog-952254.hostingersite.com';
 ```
 
-## 📖 Utilisation
+## Utilisation
 
 ### Première Utilisation
 1. **Installation** : L'extension s'installe automatiquement dans Chrome
@@ -122,7 +122,7 @@ const API_BASE_URL = 'https://cornflowerblue-dog-952254.hostingersite.com';
 - **Statut de connexion** : Vérifiez votre état d'authentification
 - **Accès rapide** : Lien direct vers votre dashboard SecurePass
 
-## 🔧 Fonctionnalités Techniques
+## Fonctionnalités Techniques
 
 ### Architecture
 ```
@@ -147,10 +147,6 @@ SecurePass Extension/
 - **Détection optimisée** : Évite les popups en boucle
 - **Mémoire efficace** : Nettoyage automatique des ressources
 
-## 🐛 Dépannage
-
-### Problèmes Courants
-
 #### Extension non détectée
 ```bash
 # Vérifiez les permissions dans manifest.json
@@ -173,10 +169,10 @@ SecurePass Extension/
 Activez les logs dans la console développeur :
 ```javascript
 // Dans content.js, utils.js et background.js
-console.log('🔐 SecurePass Debug:', data);
+console.log(' SecurePass Debug:', data);
 ```
 
-## 🚀 Développement
+## Développement
 
 ### Structure du Code
 - **Modulaire** : Séparation claire des responsabilités
@@ -200,7 +196,7 @@ const API_CONFIG = {
 };
 ```
 
-## 📝 Notes Importantes
+## Notes Importantes
 
 ### Compatibilité
 - **Chrome** : Version 88+
@@ -219,15 +215,7 @@ const API_CONFIG = {
 3. **Audit régulier** : Surveillez les accès et connexions suspectes
 4. **Sauvegarde** : Effectuez des sauvegardes régulières de la base de données
 
-## 📞 Support
-
-Pour tout problème technique ou question :
-1. Vérifiez la section Dépannage ci-dessus
-2. Consultez les logs de la console développeur
-3. Contactez votre équipe de développement
-4. Documentez les erreurs avec captures d'écran
-
-## 🔄 Mises à Jour
+## Mises à Jour
 
 Pour mettre à jour l'extension :
 1. **Mode développeur** : Rechargez dans chrome://extensions/
