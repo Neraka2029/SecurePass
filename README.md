@@ -1,4 +1,4 @@
-# SecurePass - Extension Chrome
+# SecurePass - Extension de Navigateurs
 
 Extension de navigateur Chrome pour la gestion sécurisée des mots de passe, intégrée avec votre plateforme web hébergée sur Hostinger.
 
